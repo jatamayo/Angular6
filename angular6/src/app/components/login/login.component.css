@@ -1,0 +1,25 @@
+.login_container{
+    background-image: url(../../../assets/img/msnbg.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.login_loginTitle{
+    text-align: center;
+    padding-top: 25px;
+    font-weight: bolder;
+    padding-bottom: 20px;
+}
+.login_inputStyle{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    -webkit-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+    box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+}
+.login_buttons{
+    margin: 15px;
+    font-weight: bolder;
+    -webkit-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+    box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+}
