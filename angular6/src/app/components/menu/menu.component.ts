@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
+  button1: string = 'menu_button1';
+  button2: string = 'menu_button2';
+  
   constructor() { }
 
   ngOnInit() {

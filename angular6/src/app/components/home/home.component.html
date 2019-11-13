@@ -1,8 +1,51 @@
-<input type="text" placeholder="Buscar Amigo" [(ngModel)]="query"/>
+<br><br>
+<div class="container">
+
+    <!-- header -->
+    <div class="row">
+        <div class="col-12">
+            <div class="home_header">
+                <!-- image -->
+                <div class="home_imageContainer avatarFrame_busy">
+                    <img class="home_avatarImage" src="../../../assets/img/generic_avatar.png" alt="">
+                </div>
+                <!-- information -->
+                <div>
+                    <h2 class="home_information">Jose Tamayo</h2>
+                    <h4 class="home_information">Online</h4>
+                    <h4 class="home_information">-- Write a message --</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <!-- find friend input -->
+    <div class="row">
+        <div class="home_findFriendInputContainer col-10">
+            <input class="home_inputStyle form-control" type="email" placeholder="Find friend"  [(ngModel)]="query">
+            <img class="home_findFriendIcon"   src="../../../assets/img/logo_live_add.png" alt="">
+        </div>
+    </div>
+
+    <!-- friends -->
+    <div class="row">
+        <div class="col-10">
+            <ng-container *ngFor="let user of friends | search:query; let i = index">
+                <div class="home_friendsContainer" *ngIf="user.friend">
+                    <span><img class="home_statusIcon" src="../../../assets/img/logo_live_{{user.status}}.png" alt=""></span>
+                    <span><a routerLink="/conversation/{{user.id}}">{{i}}.  {{user.nick}} </a></span>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+    
+<!-- <input type="text" placeholder="Buscar Amigo" [(ngModel)]="query"/>
 <br>
 <ng-container *ngFor="let user of friends | search:query; let i = index">
     <div *ngIf="user.friend">
         <span><img class="statusIcon" src="../../../assets/img/logo_live_{{user.status}}.png" alt=""></span>
         <a routerLink="/conversation/{{user.id}}">{{i}}.  {{user.nick}} - {{user.email}} -- {{user.status}}</a>
     </div>
-</ng-container>
+</ng-container> -->

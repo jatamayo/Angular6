@@ -1,3 +1,31 @@
+.container-fluid{
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    background: rgb(50,177,237);
+    background: linear-gradient(0deg, rgba(50,177,237,1) 0%, rgba(179,226,248,1) 100%);
+    box-shadow: 0 4px 4px -2px #232323;
+    -moz-box-shadow: 0 4px 4px -2px #232323;
+    -webkit-box-shadow: 0 4px 4px -2px #232323;
+}
+.menu_container{
+    display: flex;
+}
 .logo{
-    width: 50px;
+    margin-top: 12px;
+    margin-left: 10px;
+    width: 35px;
+    margin-right: 15px;
+}
+.menu_button{
+    background: rgb(50,177,237);
+    background: linear-gradient(0deg, rgba(50,177,237,1) 0%, rgba(179,226,248,1) 100%);
+    height: 60px;
+    color:white;
+    border:none;
+}
+.menu_button:hover{
+    border:1px solid white;
+    color:#32b1ed;
+    font-weight: bolder;
 }
