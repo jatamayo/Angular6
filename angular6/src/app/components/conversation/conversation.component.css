@@ -1,0 +1,74 @@
+.conversation_zumbido{
+    width: 50px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+.conversation_message{
+    margin-top: -15px;
+}
+.conversation_align{
+    text-align: right;
+}
+/* OTHER */
+@media only screen and (min-width: 576px) {
+    .conversation_friendName{
+        text-align: center;
+        font-weight: bolder;
+    }
+    .conversation_imageContainerFriend{
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+    .conversation_imageContainerUser{
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+    .conversation_avatarImage{
+        width: 100px;
+    }
+    .conversation_panelFriend{
+        padding: 10px;
+        height: 50vh;
+        border:2px solid gray;
+        border-radius: 5px;
+        -webkit-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+        box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+    }
+    .conversation_panelUser{
+        height: 15vh;
+        border:2px solid gray;
+        border-radius: 5px;
+        -webkit-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+        box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+    }    
+  }
+  /* MOBILE */
+  @media only screen and (max-width: 576px) {
+    .conversation_friendName{
+        text-align: center;
+        font-weight: bolder;
+    }
+    .conversation_imageContainerFriend{
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+    .conversation_imageContainerUser{
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+    .conversation_avatarImage{
+        width: 100px;
+    }
+    .conversation_panelFriend{
+        height: 50vh;
+    }
+    .conversation_panelUser{
+        height: 20vh;
+    }    
+  }

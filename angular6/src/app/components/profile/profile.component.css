@@ -1,0 +1,16 @@
+.profile_imageContainer{
+    display: flex; 
+    align-content: center; 
+    align-items: center;
+    justify-content: center;
+}
+.profile_header{
+    width: 119px;
+}
+.profile_avatarImage{
+    width: 115px;
+}
+.profile_label{
+    margin-bottom: -30px;
+    margin-top: 10px;
+}
