@@ -5,12 +5,36 @@
     justify-content: center;
 }
 .profile_header{
-    width: 119px;
+    width: 198px;
+    border-radius: 8px;
+}
+.profile_image_box{
+    -webkit-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+    box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
 }
 .profile_avatarImage{
-    width: 115px;
+    width: 196px;
+    padding: 10px;
+    border-radius: 3px;
 }
 .profile_label{
     margin-bottom: -30px;
     margin-top: 10px;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+    background-color: #007bff;
+    color:white;
+    border-radius: 5px;
 }

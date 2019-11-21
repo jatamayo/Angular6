@@ -3,7 +3,10 @@
     margin-top: 15px;
     cursor: pointer;
 }
-.conversation_message{
+.conversation_message1{
+    margin-top: -15px;
+}
+.conversation_message2{
     margin-top: -15px;
 }
 .conversation_align{

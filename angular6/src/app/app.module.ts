@@ -12,12 +12,22 @@ import { Routes, RouterModule } from '@angular/router';
 import { MenuComponent } from './components/menu/menu.component';
 import { searchPipe } from './pipes/search';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AuthenticationGuard } from './guards/authentication.guard';
+
+import { ImageCropperModule } from 'ngx-image-cropper';
+
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'conversation/:id', component: ConversationComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent,  canActivate: [AuthenticationGuard]}
 ];
 
 @NgModule({
@@ -33,7 +43,13 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireStorageModule, // imports firebase/storage only needed for storage features,
+    AngularFireDatabaseModule,
+    ImageCropperModule
 
   ],
   providers: [],

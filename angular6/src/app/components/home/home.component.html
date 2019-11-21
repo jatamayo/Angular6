@@ -2,17 +2,17 @@
 <div class="container">
 
     <!-- header -->
-    <div class="row">
+    <div class="row" *ngIf="user">
         <div class="col-12">
             <div class="home_header">
                 <!-- image -->
-                <div class="home_imageContainer avatarFrame_busy">
+                <div class="home_imageContainer avatarFrame_{{user.status}}">
                     <img class="home_avatarImage" src="../../../assets/img/generic_avatar.png" alt="">
                 </div>
                 <!-- information -->
                 <div>
-                    <h2 class="home_information">Jose Tamayo</h2>
-                    <h4 class="home_information">Online</h4>
+                    <h2 class="home_information">{{user.nick}}  <small class="" (click)="logout()">Logout</small></h2>
+                    <h4 class="home_information">{{user.status}}</h4>
                     <h4 class="home_information">-- Write a message --</h4>
                 </div>
             </div>
@@ -31,21 +31,16 @@
     <!-- friends -->
     <div class="row">
         <div class="col-10">
-            <ng-container *ngFor="let user of friends | search:query; let i = index">
-                <div class="home_friendsContainer" *ngIf="user.friend">
+            <br>
+            <b *ngIf="friends">Amigos ({{friends.length}} / {{friends.length}}) </b>
+            <div *ngFor="let user of friends | search:query; let i = index">
+                <p>{{user.email}}</p>
+                <div class="home_friendsContainer">
                     <span><img class="home_statusIcon" src="../../../assets/img/logo_live_{{user.status}}.png" alt=""></span>
-                    <span><a routerLink="/conversation/{{user.id}}">{{i}}.  {{user.nick}} </a></span>
+                    <span><a routerLink="/conversation/{{user.id}}"> {{user.nick}}  - {{user.subnick || 'No subnick'}}  <small>{{user.email}}</small></a></span>
                 </div>
-            </ng-container>
+            </div>
         </div>
     </div>
 </div>
     
-<!-- <input type="text" placeholder="Buscar Amigo" [(ngModel)]="query"/>
-<br>
-<ng-container *ngFor="let user of friends | search:query; let i = index">
-    <div *ngIf="user.friend">
-        <span><img class="statusIcon" src="../../../assets/img/logo_live_{{user.status}}.png" alt=""></span>
-        <a routerLink="/conversation/{{user.id}}">{{i}}.  {{user.nick}} - {{user.email}} -- {{user.status}}</a>
-    </div>
-</ng-container> -->
