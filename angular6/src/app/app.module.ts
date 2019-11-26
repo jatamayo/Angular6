@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ConversationComponent } from './components/conversation/conversation.component';
@@ -22,6 +22,10 @@ import { AuthenticationGuard } from './guards/authentication.guard';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
+
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard]},
@@ -42,15 +46,15 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
     FormsModule,
+    RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features,
     AngularFireDatabaseModule,
-    ImageCropperModule
-
+    ImageCropperModule,
+    NgbModule  
   ],
   providers: [],
   bootstrap: [AppComponent]

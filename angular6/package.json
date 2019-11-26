@@ -1,6 +1,7 @@
 {
   "name": "angular6",
   "version": "0.0.0",
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,20 +9,25 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "electron": "ng build && electron .",
+    "electron-aot": "ng build --prod && electron .",
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/architect": "^0.803.19",
     "@angular/animations": "~9.0.0-rc.1",
     "@angular/common": "~9.0.0-rc.1",
     "@angular/compiler": "~9.0.0-rc.1",
     "@angular/core": "~9.0.0-rc.1",
     "@angular/fire": "^5.2.3",
     "@angular/forms": "~9.0.0-rc.1",
+    "@angular/localize": "^9.0.0-rc.0",
     "@angular/platform-browser": "~9.0.0-rc.1",
     "@angular/platform-browser-dynamic": "~9.0.0-rc.1",
     "@angular/router": "~9.0.0-rc.1",
     "@fortawesome/fontawesome-free": "5.11.2",
+    "@ng-bootstrap/ng-bootstrap": "5.1.4",
     "bootstrap": "4.3.1",
     "firebase": "^7.3.0",
     "ngx-image-cropper": "^2.0.2",

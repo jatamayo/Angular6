@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
 import { UserService } from '../../services/user.service';
-import { AutentiationService } from '../../services/autentiation.service'; 
+import { AuthenticationService } from '../../services/authentication.service'; 
 
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { FirebaseStorage } from '@angular/fire';
@@ -20,9 +20,9 @@ export class ProfileComponent implements OnInit {
   croppedImage: any = '';
   picture: any;
 
-  constructor(private userService: UserService, private autentiationService: AutentiationService, private firebaseStorage: AngularFireStorage) {
+  constructor(private userService: UserService, private authenticationService: AuthenticationService, private firebaseStorage: AngularFireStorage) {
 
-    this.autentiationService.getStatus().subscribe((status)=>{
+    this.authenticationService.getStatus().subscribe((status)=>{
       this.userService.getUserById(status.uid).valueChanges().subscribe((data: User)=>{
         this.user = data;
         console.log(this.user);

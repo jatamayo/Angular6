@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AutentiationService } from '../../services/autentiation.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 
@@ -15,13 +15,13 @@ export class LoginComponent implements OnInit {
   password: string = null;
   nick: string = null;
 
-  constructor(private autentiationService: AutentiationService, private userService: UserService, private router: Router){}
+  constructor(private authenticationService: AuthenticationService, private userService: UserService, private router: Router){}
 
   ngOnInit() {
   }
 
   login() {
-    this.autentiationService.loginWithEmail(this.email, this.password).then( 
+    this.authenticationService.loginWithEmail(this.email, this.password).then( 
       (data) => {
         alert('Loggeado correctamente');
         console.log(data);
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   register() {
-    this.autentiationService.registerWithEmail(this.email, this.password).then( 
+    this.authenticationService.registerWithEmail(this.email, this.password).then( 
       (data) => {
         const user = {
           id:data.user.uid,

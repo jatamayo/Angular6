@@ -2,10 +2,10 @@
     <p>{{friend | json}}</p>
 </div> -->
 <br><br>
-<div class="container">
+<div class="container" [ngClass]="{'shaker':shake}">
 
     <!-- Friend -->
-    <div class="row ">
+    <div class="row">
         <!-- image -->
         <div class="conversation_imageContainerFriend col-12 col-md-3">
             <div class="">
@@ -16,21 +16,16 @@
         <!-- Conversation panel -->
         <div class="col-9">
             <div class="conversation_panelFriend overflow-auto ">
-                <div class="conversation_align">
-                    <p class="conversation_user"><b>Jose Tamayo ...</b></p>
-                    <p class="conversation_message1">hola como estas!</p>
-                    <hr>
+                <div class="conversation_align" *ngFor="let message of conversation"> 
+                        <b>{{getUserNickById(message.sender)}} ...</b>
+                        <p>{{message.text}}</p>
+                        <hr>
                 </div>
 
                 <div class="">
                     <p class="conversation_user"><b>Soraida ...</b></p>
                     <p class="conversation_message2">bien gracias.</p>
                     <hr>
-                </div>
-
-                <div class="conversation_align">
-                    <p class="conversation_user"><b>Jose Tamayo ...</b></p>
-                    <p class="conversation_message">Excelente</p>
                 </div>
             </div>       
         </div>
@@ -48,9 +43,9 @@
             <!-- Conversation panel / icons-->
             <div class="col-9">
                 <div class="overflow-auto ">
-                    <textarea class="form-control conversation_panelUser" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" class="form-control conversation_panelUser" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
-                <div>
+                <div (click)="sendZumbido()">
                     <img class="conversation_zumbido"   alt="" src="../../../assets/img/zumbido.png">
                 </div>            
             </div>
