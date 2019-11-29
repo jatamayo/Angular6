@@ -3,9 +3,17 @@
     margin-top: 15px;
     cursor: pointer;
 }
+.testing{
+    -webkit-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+    box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+}
 
 /* OTHER */
 @media only screen and (min-width: 576px) {
+    .conversation_friendContainer{
+        margin-bottom: 50px;
+    }
     .conversation_friendName{
         text-align: center;
         font-weight: bolder;
@@ -22,6 +30,7 @@
     }
     .conversation_avatarImage{
         width: 100px;
+        padding:5px;
     }
     .conversation_panelFriend{
         padding: 10px;
@@ -39,29 +48,45 @@
         -webkit-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
         -moz-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
         box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+    }
+    .conversation_user_boxImage{
+        height: 105px;
     }    
   }
   /* MOBILE */
   @media only screen and (max-width: 576px) {
+      .conversation_friendContainer{
+        margin-bottom: 15px;
+    }
     .conversation_friendName{
         text-align: center;
         font-weight: bolder;
     }
     .conversation_imageContainerFriend{
         display: flex;
-        align-content: center;
-        justify-content: center;
+    }
+    .conversation_friendName_mobile{
+        margin-left: 25px;
+        font-weight: bolder;
+        font-size: 19px;
+        margin-top: 15px;
     }
     .conversation_imageContainerUser{
-        display: flex;
-        align-content: center;
-        justify-content: center;
+        display: none;
     }
     .conversation_avatarImage{
-        width: 100px;
+        width: 60px;
+        padding:5px;
     }
     .conversation_panelFriend{
-        height: 50vh;
+        margin-top: 10px;
+        padding:10px;
+        border-radius: 5px;
+        height: 45vh;
+        -webkit-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+        box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
+        border: solid 1px gray;
     }
     .conversation_panelUser{
         height: 20vh;

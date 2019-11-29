@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { User } from '../../interfaces/user';
+import {Subject} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
@@ -19,6 +21,10 @@ import { RequestsService } from '../../services/requests.service';
 
 export class HomeComponent implements OnInit {
 
+  private _success = new Subject<string>();
+  staticAlertClosed = false;
+  successMessage: string;
+
   friends: User[];
   query: string = '';
   user: User;
@@ -32,9 +38,6 @@ export class HomeComponent implements OnInit {
     private modalService: NgbModal,
     private requestsService: RequestsService){
 
-    config.backdrop = 'static';
-    config.keyboard = false;
-
     this.authenticationService.getStatus().subscribe((status)=>{
       this.userService.getUserById(status.uid).valueChanges().subscribe((data: User)=>{
         this.user = data;
@@ -45,7 +48,6 @@ export class HomeComponent implements OnInit {
     }, (error)=>{
       console.log(error);
     })
-
     userService.getUsers().valueChanges().subscribe((data: User[]) => {
       this.friends = data;
       console.log(data);
@@ -59,7 +61,18 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
+  /* Alert */
+  ngOnInit(): void {
+    setTimeout(() => this.staticAlertClosed = true, 20000);
+    this._success.subscribe((message) => this.successMessage = message);
+    this._success.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.successMessage = null);
+
+  }
+  /* Message alert */
+  public changeSuccessMessage() {
+    this._success.next(`- Message successfully changed.`);
   }
 
   logout(){

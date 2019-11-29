@@ -3,24 +3,33 @@
     align-content: center; 
     align-items: center;
     justify-content: center;
+    margin-bottom: -25px;
 }
 .profile_header{
     width: 198px;
     border-radius: 8px;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
 }
 .profile_image_box{
+    display: flex;
+    margin-left: 33px;
+    height: 135px;
+    width: 130px;
     -webkit-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
     box-shadow: 10px 14px 15px -9px rgba(0,0,0,0.75);
 }
 .profile_avatarImage{
-    width: 196px;
+    width: 125px;
     padding: 10px;
     border-radius: 3px;
 }
 .profile_label{
     margin-bottom: -30px;
     margin-top: 10px;
+    font-weight: bolder;
 }
 
 input[type="file"] {

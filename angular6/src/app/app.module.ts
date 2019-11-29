@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 import { AppComponent } from './app.component';
 import { ConversationComponent } from './components/conversation/conversation.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -47,7 +49,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {useHash:true}),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
@@ -56,7 +58,7 @@ const appRoutes: Routes = [
     ImageCropperModule,
     NgbModule  
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

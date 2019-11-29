@@ -31,10 +31,13 @@ export class ConversationComponent implements OnInit {
     console.log(this.friendId);
     
     this.authenticationService.getStatus().subscribe((session) => {
+
       this.userService.getUserById(session.uid).valueChanges().subscribe((user: User) => {
         this.user = user;
+        console.log(this.user);
         this.userService.getUserById(this.friendId).valueChanges().subscribe((data: User) => {
           this.friend = data;
+          console.log(this.friend);
           const ids = [this.user.id, this.friend.id].sort();
           this.conversation_id = ids.join('|');
           this.getConversation();
@@ -44,6 +47,8 @@ export class ConversationComponent implements OnInit {
       });
     });
   }
+
+
 
   ngOnInit() {
   }

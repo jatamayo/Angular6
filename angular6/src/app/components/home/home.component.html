@@ -7,13 +7,13 @@
             <div class="home_header">
                 <!-- image -->
                 <div class="home_imageContainer avatarFrame_{{user.status}}">
-                    <img class="home_avatarImage" src="../../../assets/img/generic_avatar.png" alt="">
+                    <img class="home_avatarImage" [src]="user.avatar || '../../../assets/img/generic_avatar.png'" alt="">
                 </div>
                 <!-- information -->
                 <div>
-                    <h2 class="home_information">{{user.nick}}  <small class="" (click)="logout()">Logout</small></h2>
+                    <h2 class="home_information">{{user.nick}}</h2>
                     <h4 class="home_information">{{user.status}}</h4>
-                    <h4 class="home_information">-- Write a message --</h4>
+                    <button class="home_button_logout btn btn-danger" (click)="logout()">Logout</button>
                 </div>
             </div>
         </div>
@@ -32,32 +32,28 @@
     <div class="row">
         <div class="col-10">
             <br>
-            <b *ngIf="friends">Amigos ({{friends.length}} / {{friends.length}}) </b>
-            <div *ngFor="let user of friends | search:query; let i = index">
-                <p>{{user.email}}</p>
-                <div class="home_friendsContainer">
-                    <span><img class="home_statusIcon" src="../../../assets/img/logo_live_{{user.status}}.png" alt=""></span>
-                    <span><a routerLink="/conversation/{{user.id}}"> {{user.nick}}  - {{user.subnick || 'No subnick'}}  <small>{{user.email}}</small></a></span>
+            <div>
+                <b *ngIf="friends">Amigos ({{friends.length -1 }} / {{friends.length - 1}}) </b>
+            </div>
+            <hr>
+            <div *ngFor="let friend of friends | search:query; let i = index">
+                <div class="home_friendsContainer" *ngIf="friend.id != user.id" routerLink="/conversation/{{friend.id}}" style="display:flex; height: 50px; border-bottom: solid 1px lightgray;">
+                    <div>
+                        <img class="home_statusIcon" src="../../../assets/img/logo_live_{{friend.status}}.png" alt="" style="height: 25px; margin-top: 10px;">
+                    </div>  
+                    <div>
+                        <p><b>{{friend.nick || 'No nick'}}</b></p> <br>
+                        <p style="margin-top: -45px; margin-bottom: -10px;">{{friend.email}}</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <ng-template #content let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <input type="email" class="form-control" placeholder="Email" [(ngModel)]="friendEmail" (kayup.enter)="sendRequest()">
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="sendRequest()">Save</button>
-        </div>
-    </ng-template>
-        
-    <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
+
+    <ngb-alert class="alert_elementToFadeInAndOut" *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+    <p>
+        <button class="btn btn-primary" (click)="changeSuccessMessage()">Change message</button>
+    </p>
 </div>
     

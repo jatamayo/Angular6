@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
+
+import {Subject} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
 import { UserService } from '../../services/user.service';
 import { AuthenticationService } from '../../services/authentication.service'; 
 
@@ -14,6 +17,9 @@ import { AngularFireStorage } from '@angular/fire/storage';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  private _success = new Subject<string>();
+  staticAlertClosed = false;
+  successMessage: string;
 
   user: User;
   imageChangedEvent: any = '';
@@ -34,7 +40,18 @@ export class ProfileComponent implements OnInit {
     });
    }
 
-  ngOnInit() {
+  /* Alert */
+  ngOnInit(): void {
+    setTimeout(() => this.staticAlertClosed = true, 20000);
+    this._success.subscribe((message) => this.successMessage = message);
+    this._success.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.successMessage = null);
+
+  }
+  /* Message alert */
+  public changeSuccessMessage() {
+    this._success.next(`- Message successfully changed.`);
   }
 
   saveSettings() {
@@ -45,7 +62,6 @@ export class ProfileComponent implements OnInit {
         this.picture = this.firebaseStorage.ref('pictures/' + currentPictureId + '.jpg').getDownloadURL();
         this.picture.subscribe((p) => {
           this.userService.setAvatar(p, this.user.id).then(() => {
-            alert('Avatar subido correctamentne');
           }).catch((error) => {
             alert('Hubo un error al tratar de subir la imagen');
             console.log(error);
@@ -56,7 +72,7 @@ export class ProfileComponent implements OnInit {
       });
     } else {
       this.userService.editUser(this.user).then(() => {
-        alert('Cambios guardados!');
+        this.changeSuccessMessage();
       }).catch((error) => {
         alert('Hubo un error');
         console.log(error);

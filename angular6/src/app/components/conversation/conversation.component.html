@@ -1,53 +1,49 @@
-<!-- <div>
-    <p>{{friend | json}}</p>
-</div> -->
-<br><br>
+<br>
 <div class="container" [ngClass]="{'shaker':shake}">
 
     <!-- Friend -->
-    <div class="row">
+    <div class="row conversation_friendContainer" *ngIf="friend">
         <!-- image -->
-        <div class="conversation_imageContainerFriend col-12 col-md-3">
-            <div class="">
-                <p class="conversation_friendName">Fiend</p>
-                <img class="avatarFrame_busy conversation_avatarImage" src="../../../assets/img/generic_avatar.png" alt="">
+        <div class="conversation_imageContainerFriend col-12 col-md-3 col-sm-3">
+            <div>
+                <p class="conversation_friendName d-none d-sm-block">Fiend</p>
+                <div class="avatarFrame_{{friend.status}}">
+                    <img class="avatarFrame_busy conversation_avatarImage" src="../../../assets/img/generic_avatar.png" alt="">
+                </div>
+            </div>
+            <div>
+                <p class="conversation_friendName_mobile d-block d-sm-none">Fiend</p>
             </div>
         </div>
         <!-- Conversation panel -->
-        <div class="col-9">
+        <div class="col-md-9 col-sm-9 col-12">
             <div class="conversation_panelFriend overflow-auto ">
                 <div class="conversation_align" *ngFor="let message of conversation"> 
                         <b>{{getUserNickById(message.sender)}} ...</b>
                         <p>{{message.text}}</p>
                         <hr>
                 </div>
-
-                <div class="">
-                    <p class="conversation_user"><b>Soraida ...</b></p>
-                    <p class="conversation_message2">bien gracias.</p>
-                    <hr>
-                </div>
             </div>       
         </div>
     </div>
-    
-    <br>
+
+
     <!-- user -->
-    <div class="row ">
-            <!-- image -->
-            <div class="conversation_imageContainerUser col-12 col-md-3">
-                <div class="">
-                    <img class="avatarFrame_busy conversation_avatarImage" src="../../../assets/img/generic_avatar.png" alt="">
-                </div>
-            </div>
-            <!-- Conversation panel / icons-->
-            <div class="col-9">
-                <div class="overflow-auto ">
-                    <textarea [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" class="form-control conversation_panelUser" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <div (click)="sendZumbido()">
-                    <img class="conversation_zumbido"   alt="" src="../../../assets/img/zumbido.png">
-                </div>            
+    <div class="row" *ngIf="user">
+        <!-- image -->
+        <div class="conversation_imageContainerUser col-12 col-md-3 col-sm-3">
+            <div class="conversation_user_boxImage avatarFrame_{{user.status}}">
+                <img class="avatarFrame_busy conversation_avatarImage" [src]="user.avatar || '../../../assets/img/generic_avatar.png'" alt="">
             </div>
         </div>
+        <!-- Conversation panel / icons-->
+        <div class="col-md-9 col-sm-9 col-12">
+            <div class="overflow-auto testing">
+                <textarea [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" class="form-control conversation_panelUser" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div (click)="sendZumbido()">
+                <img class="conversation_zumbido"   alt="" src="../../../assets/img/zumbido.png">
+            </div>            
+        </div>
+    </div>
 </div>
